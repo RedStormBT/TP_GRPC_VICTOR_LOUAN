@@ -1,0 +1,41 @@
+
+syntax = "proto3";
+
+service Booking {
+    rpc GetJson(Empty4) returns (JsonBooking) {}
+    rpc GetBookingForUser(UserId) returns (BookingData) {}
+    rpc AddBookingForUser(SingleBook) returns (ResponseMessage) {}
+}
+
+message JsonBooking
+{
+    repeated BookingData bookings = 1;
+}
+
+message ResponseMessage
+{
+    string responseMessage = 1;
+}
+
+message UserId {
+    string userid = 1;
+}
+
+message BookingData {
+    string userid = 1;
+    repeated DateBooked dates = 2;
+}
+
+message DateBooked {
+    string date = 1;
+    repeated string movies = 2;
+}
+
+message SingleBook {
+    string userid = 1;
+    string date = 2;
+    string movieid = 3;
+}
+
+message Empty4 {
+}
